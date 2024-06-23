@@ -31,15 +31,6 @@ if (!isset($_SESSION['photos'])) {
     $fav = json_decode($fav);
     // Define the directory where photos are stored
     $photosDirectory = $album;
-    // Scan the directory for image files
-    // $files = scandir($photosDirectory);
-    // Filter out non-image files (you may add more image extensions as needed)
-    // $imageExtensions = ['jpg', 'jpeg', 'png', 'gif'];
-    // $imageFiles = array_filter($files, function ($file) use ($imageExtensions) {
-    //   $info = pathinfo($file);
-    //   return in_array(strtolower($info['extension']), $imageExtensions);
-    // });
-
     // Pagination setup
     $perPage = 50; // Number of images per page
     $totalImages = count($fav);
@@ -64,48 +55,25 @@ if (!isset($_SESSION['photos'])) {
     $imagesToShow = array_slice($fav, $start, $perPage);
 
     // Display images
-    echo "<h3>Selected " . strtoupper($album) . " photos ($totalImages)</h3>";
+    echo "<h4>Selected " . strtoupper($album) . " photos ($totalImages)</h4>";
     // selected photos json download link
-    echo "<a href='$album/" . "$album" . "_selected.json' download class='btn btn-sm btn-outline-primary'>Download Selected Photos</a>";
+    echo "<a href='download_selected.php?album=$album' download class='btn btn-sm btn-outline-primary'>Download Selected Photos</a>";
     echo '<div class="gallery">';
     $i = 0;
-    function sanitize_for_id($string)
-    {
-      return preg_replace('/[^a-zA-Z0-9-_]/', '_', $string);
-    }
     foreach ($imagesToShow as $image) {
       $i++;
       $photolabel = $i + ($current - 1) * 50;
-      $photoClass = '';
-      if (in_array($image, $fav)) {
-        $favImg = true;
-        $photoClass = 'mybg-color';
-      } else {
-        $favImg = false;
-      }
-      // echo '<div class="image">';
-      // echo '<img src="' . $photosDirectory . $image . '" alt="' . $image . '" />';
-      // echo '</div>';
       echo "<div class='show-photos d-flex justify-content-center mb-3'>
-                    <div class='border $photoClass' style='max-width: 600px;'>
-                    <label class='ms-2'>Photo no $photolabel</label>
-                        <img src='$album/$image' alt='photo...' class='img-fluid py-2' loading='lazy'>";
+            <div class='border mybg-color' style='max-width: 600px;'>
+            <label class='ms-2'>Photo no $photolabel</label>
+            <img src='$album/$image' alt='photo...' class='img-fluid py-2' loading='lazy'>";
       $safe_image = htmlspecialchars($image); // Make the image name HTML safe
-      $sanitized_image = sanitize_for_id($image); // Sanitize the image name for use in IDs
-
-      if ($favImg) {
-        echo "<div id='rem_$sanitized_image'><i class='bi bi-heart-fill ms-3 fs-4 text-danger'></i>
-                <button class='btn btn-outline-primary btn-sm ms-3 mb-2' hx-get='unselect.php?album=$album&photo=$safe_image' hx-trigger='click' hx-target='#rem_$sanitized_image' hx-swap='outerHTML'>Unselect</button>
+      echo "<div class='heart-div'><i class='bi bi-heart-fill ms-3 fs-4 text-danger'></i>
+                <button class='btn btn-outline-primary btn-sm ms-3 mb-2' hx-get='unselect.php?album=$album&photo=$safe_image' hx-trigger='click' hx-target='closest .heart-div'>Unselect</button>
                 </div>";
-      } else {
-        echo "<div id='add_$sanitized_image'><i class='bi bi-heart ms-3 fs-4 text-danger'></i>
-                <button class='btn btn-outline-primary btn-sm ms-3 mb-2' hx-get='select.php?album=$album&photo=$safe_image' hx-trigger='click' hx-target='#add_$sanitized_image' hx-swap='outerHTML'>Select</button>
-                </div>";
-      }
       echo "</div>";
       echo "</div>";
     }
-
     echo '</div>';
 
     // Pagination links

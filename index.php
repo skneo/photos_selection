@@ -18,11 +18,12 @@ if (!isset($_SESSION['photos'])) {
 </head>
 
 <body>
-  <div class="bg-dark text-light text-center h4 py-3" style="position:sticky; top: 0;">Photos Selection</div>
-  <div>
-
-    <a href="change_password.php" class=' btn btn-outline-primary btn-sm mx-3'>Change Password</a>
-    <a href="logout.php" class=' btn btn-outline-danger btn-sm mx-3'>Logout</a>
+  <div class='bg-dark text-light sticky-top d-flex justify-content-between p-3'>
+    <a href="index.php" class='text-white'>Photos Selection</a>
+    <div>
+      <a href="change_password.php" class='mx-2 text-white'>Change Password</a>
+      <a href="logout.php" class='mx-2 text-white'>Logout</a>
+    </div>
   </div>
   <div class="container my-3  text-center ">
     <h4>All Albums</h4><br>
@@ -51,9 +52,6 @@ if (!isset($_SESSION['photos'])) {
         }
         ?>
       </div>
-      <?php
-      // echo "Total Employees: $totalEmployees";
-      ?>
     </center>
   </div>
   <!-- Option 1: Bootstrap Bundle with Popper -->

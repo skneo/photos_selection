@@ -36,8 +36,12 @@ if (isset($_POST['pwd1'])) {
 </head>
 
 <body>
-    <div class='p-3'>
-        <a href="index.php" class='btn btn-outline-primary'>Home</a>
+    <div class='bg-dark text-light sticky-top d-flex justify-content-between p-2'>
+        <a href="index.php" class='text-white'>Photos Selection</a>
+        <div>
+            <a href="change_password.php" class='mx-2 text-white'>Change Password</a>
+            <a href="logout.php" class='mx-2 text-white'>Logout</a>
+        </div>
     </div>
     <?php
     // include "navbar.php";
