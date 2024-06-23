@@ -1,9 +1,9 @@
 <?php
-// session_start();
-// if (!isset($_SESSION[$section . 'loggedin'])) {
-//     header('Location: index.php');
-// }
-// $showAlert = false;
+session_start();
+if (!isset($_SESSION['photos'])) {
+  header("Location: login.php");
+  exit;
+}
 ?>
 <!doctype html>
 <html lang='en'>
@@ -19,6 +19,11 @@
 
 <body>
   <div class="bg-dark text-light text-center h4 py-3" style="position:sticky; top: 0;">Photos Selection</div>
+  <div>
+
+    <a href="change_password.php" class=' btn btn-outline-primary btn-sm mx-3'>Change Password</a>
+    <a href="logout.php" class=' btn btn-outline-danger btn-sm mx-3'>Logout</a>
+  </div>
   <div class="container my-3  text-center ">
     <h4>All Albums</h4><br>
     <center>
