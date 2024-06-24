@@ -49,6 +49,7 @@ output_folder = input_folder+'_compressed'
 compress_images(input_folder, output_folder, quality)
 i=input('*****\nall files compressed from '+input_folder+' and saved to '+output_folder+', do you want to create zip of all files? yes/no: ')
 if(i=='yes'):
+    print('creating zip file. please wait...')
     zip_folder(output_folder, input_folder+'_compressed.zip')
     input('zip file created, press enter to exit')
 
