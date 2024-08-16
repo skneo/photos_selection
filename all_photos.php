@@ -74,7 +74,7 @@ if (!isset($_SESSION['photos'])) {
                 $favImg = false;
             }
             echo "<div class='show-photos d-flex justify-content-center mb-3'>
-                    <div class='border $photoClass' style='max-width: 600px;'>
+                    <div class='border $photoClass rounded' style='max-width: 600px;'>
                     <label class='ms-2'>Photo no $photolabel</label>
                         <img src='$album/$image' alt='photo...' class='img-fluid py-2' loading='lazy'>";
             $safe_image = htmlspecialchars($image); // Make the image name HTML safe

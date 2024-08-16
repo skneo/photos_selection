@@ -57,14 +57,14 @@ if (!isset($_SESSION['photos'])) {
     // Display images
     echo "<h4>Selected " . strtoupper($album) . " photos ($totalImages)</h4>";
     // selected photos json download link
-    echo "<a href='download_selected.php?album=$album' download class='btn btn-sm btn-outline-primary'>Download Selected Photos</a>";
+    echo "<a href='download_selected.php?album=$album' download class='mb-2 btn btn-sm btn-outline-primary'>Download Selected Photos</a>";
     echo '<div class="gallery">';
     $i = 0;
     foreach ($imagesToShow as $image) {
       $i++;
       $photolabel = $i + ($current - 1) * 50;
       echo "<div class='show-photos d-flex justify-content-center mb-3'>
-            <div class='border mybg-color' style='max-width: 600px;'>
+            <div class='border mybg-color rounded' style='max-width: 600px;'>
             <label class='ms-2'>Photo no $photolabel</label>
             <img src='$album/$image' alt='photo...' class='img-fluid py-2' loading='lazy'>";
       $safe_image = htmlspecialchars($image); // Make the image name HTML safe
